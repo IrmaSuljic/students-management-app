@@ -1,0 +1,25 @@
+<div class="container px-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Num</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ numOfCourses }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-courses-view
+    [firstName]="student.firstName"
+    [courses]="student.courses"
+    (numOfCourses)="setNumber($event)"
+  ></app-courses-view>
+</div>
