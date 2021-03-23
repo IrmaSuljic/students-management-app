@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Student } from './../../models/student';
 
 @Component({
@@ -7,16 +8,48 @@ import { Student } from './../../models/student';
   styleUrls: ['./students-view.component.css'],
 })
 export class StudentsViewComponent implements OnInit {
-  student: Student;
+  students: Student[] = [];
   numOfCourses: number;
-  constructor() {}
+  showCourses: boolean = false;
+  constructor(private route: Router) {}
 
   ngOnInit(): void {
-    this.student = {
-      firstName: 'Irma',
-      lastName: 'Suljic',
-      courses: ['HTML', 'CSS', 'Angular'],
-    };
+    this.students = [
+      {
+        firstName: 'Irma',
+        lastName: 'Suljic',
+        courses: [
+          { title: 'HTML', completed: 8 },
+          { title: 'CSS', completed: 4 },
+          { title: 'Angular', completed: 0 },
+        ],
+        currentCourse: 'HTML',
+      },
+      {
+        firstName: 'Mujo',
+        lastName: 'Mujic',
+        courses: [
+          { title: 'HTML', completed: 8 },
+          { title: 'HTML', completed: 8 },
+          { title: 'ReactJS', completed: 8 },
+        ],
+        currentCourse: 'ReactJS',
+      },
+      {
+        firstName: 'Ivo',
+        lastName: 'Ivic',
+        courses: [
+          { title: 'HTML', completed: 8 },
+          { title: 'HTML', completed: 8 },
+          { title: 'ReactJS', completed: 8 },
+        ],
+        currentCourse: 'CSS',
+      },
+    ];
+  }
+
+  goToDetails(id: number): void {
+    this.route.navigate(['/student-details', id]);
   }
 
   setNumber(numOfCourses: number) {

@@ -1,3 +1,7 @@
+<div class="container text-center m-2">
+  <h2>Students View</h2>
+</div>
+
 <div class="container px-3">
   <table class="table table-striped">
     <thead>
@@ -6,20 +10,31 @@
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
         <th scope="col">Num</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
+      <tr *ngFor="let student of students; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
         <td>{{ student.firstName }}</td>
         <td>{{ student.lastName }}</td>
-        <td>{{ numOfCourses }}</td>
+        <td>{{ student.courses.length }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="goToDetails(i + 1)">
+            Details
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+  <div class="row">
+    <button class="btn btn-info ml-3" (click)="showCourses = !showCourses">
+      {{ showCourses ? "Hide" : "Show" }} Courses
+    </button>
+  </div>
   <app-courses-view
-    [firstName]="student.firstName"
-    [courses]="student.courses"
+    *ngIf="showCourses"
+    [student]="students[0]"
     (numOfCourses)="setNumber($event)"
   ></app-courses-view>
 </div>
