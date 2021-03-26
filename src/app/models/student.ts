@@ -4,4 +4,5 @@ export interface Student {
   lastName: string;
   courses: Course[];
   currentCourse?: string;
+  dateOfBirth?: any;
 }

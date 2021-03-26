@@ -15,5 +15,6 @@ export class CompletedBorderDirective implements OnInit {
     } else {
       this.el.nativeElement.style.borderColor = 'green';
     }
+    this.el.nativeElement.style.borderRadius = '5px';
   }
 }

@@ -11,6 +11,7 @@ import { CompletedBorderDirective } from './directives/completed-border.directiv
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { NavComponent } from './components/nav/nav.component';
+import { PercentMsgPipe } from './pipes/percent-msg.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavComponent } from './components/nav/nav.component';
     CompletedBorderDirective,
     PageNotFoundComponent,
     StudentDetailsComponent,
-    NavComponent
+    NavComponent,
+    PercentMsgPipe
   ],
   imports: [
     BrowserModule,

@@ -7,8 +7,10 @@ import { Student } from './../../models/student';
   styleUrls: ['./courses-view.component.css'],
 })
 export class CoursesViewComponent implements OnInit {
+  maxNumberOfCourses = 8;
   @Input() student: Student;
   @Output() numOfCourses = new EventEmitter<number>();
+
   constructor() {}
 
   ngOnInit(): void {}
