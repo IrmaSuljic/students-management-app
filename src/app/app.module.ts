@@ -1,16 +1,16 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './components/home/home.component';
-import { StudentsViewComponent } from './components/students-view/students-view.component';
 import { CoursesViewComponent } from './components/courses-view/courses-view.component';
-import { CompletedBorderDirective } from './directives/completed-border.directive';
+import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './components/nav/nav.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
-import { NavComponent } from './components/nav/nav.component';
+import { StudentsViewComponent } from './components/students-view/students-view.component';
+import { CompletedBorderDirective } from './directives/completed-border.directive';
 import { PercentMsgPipe } from './pipes/percent-msg.pipe';
 
 @NgModule({
@@ -23,14 +23,10 @@ import { PercentMsgPipe } from './pipes/percent-msg.pipe';
     PageNotFoundComponent,
     StudentDetailsComponent,
     NavComponent,
-    PercentMsgPipe
+    PercentMsgPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

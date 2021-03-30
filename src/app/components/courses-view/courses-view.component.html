@@ -1,6 +1,5 @@
-<h1>{{ student.firstName }}</h1>
+<h3>Courses for Student {{ student.firstName }}:</h3>
 <div>
-  <label>Courses: </label>
   <div *ngFor="let course of student.courses">
     <p>{{ course.title }}</p>
     <p [appCompletedBorder]="course.completed" class="completed p-2">
@@ -9,12 +8,14 @@
     </p>
   </div>
   <div [ngSwitch]="student.currentCourse">
-    <div *ngSwitchCase="'HTML'">You are on HTML</div>
-    <div *ngSwitchCase="'ReactJS'">You are on ReactJS</div>
-    <div *ngSwitchCase="'CSS'">You are on CSS</div>
-    <div *ngSwitchDefault>No active course</div>
+    <div *ngSwitchCase="'HTML'">Student is currently on HTML course.</div>
+    <div *ngSwitchCase="'JavaScript'">
+      Student is currently on JavaScript course.
+    </div>
+    <div *ngSwitchCase="'CSS'">Student is currently on CSS course.</div>
+    <div *ngSwitchDefault>No active course.</div>
   </div>
-  <button class="btn btn-primary d-block" (click)="sendNumber()">
+  <button class="btn btn-primary d-block my-3" (click)="sendNumber()">
     Send Number of Courses
   </button>
 </div>

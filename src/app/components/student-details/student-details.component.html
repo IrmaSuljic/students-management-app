@@ -1,30 +1,38 @@
-<div class="row m-2">
-  <div class="col-md-2">First Name:</div>
-  <div class="col-md-4">{{ student.firstName }}</div>
+<div class="mx-auto text-center mb-3 p-2 bg-primary text-light">
+  <h3>Students Details View</h3>
 </div>
-<div class="row m-2">
-  <div class="col-md-2">Last Name:</div>
-  <div class="col-md-4">{{ student.lastName }}</div>
-</div>
-<div class="row m-2">
-  <div class="col-md-2">Number of courses:</div>
-  <div class="col-md-4">{{ numOfCourses }}</div>
-</div>
-<div class="row m-2">
-  <div class="col-md-2">Date of Birth:</div>
-  <div class="col-md-4">
-    {{ student.dateOfBirth | date: "fullDate" | titlecase }}
-  </div>
-</div>
-<div class="row m-2">
-  <button class="btn btn-info ml-3" (click)="showCourses = !showCourses">
-    {{ showCourses ? "Hide" : "Show" }} Courses
-  </button>
-</div>
-<div class="row m-2">
-  <app-courses-view
-    *ngIf="showCourses"
-    [student]="student"
-    (numOfCourses)="setNumber($event)"
-  ></app-courses-view>
+<div class="container mt-1">
+  <ng-container *ngIf="student">
+    <div class="row m-2">
+      <div class="col-md-2">First Name:</div>
+      <div class="col-md-4">{{ student.firstName }}</div>
+    </div>
+    <div class="row m-2">
+      <div class="col-md-2">Last Name:</div>
+      <div class="col-md-4">{{ student.lastName }}</div>
+    </div>
+    <div class="row m-2">
+      <div class="col-md-2">Number of courses:</div>
+      <div class="col-md-4">{{ numOfCourses }}</div>
+    </div>
+    <div class="row m-2">
+      <div class="col-md-2">Date of Birth:</div>
+      <div class="col-md-4">
+        {{ student.dateOfBirth | date: "fullDate" | titlecase }}
+      </div>
+    </div>
+    <div class="row m-2">
+      <button class="btn btn-info ml-3" (click)="showCourses = !showCourses">
+        {{ showCourses ? "Hide" : "Show" }} Courses
+      </button>
+    </div>
+    <div class="container mt-4">
+      <app-courses-view
+        *ngIf="showCourses"
+        [student]="student"
+        (numOfCourses)="setNumber($event)"
+      ></app-courses-view>
+    </div>
+  </ng-container>
+  <div *ngIf="errorMsg" [style.color]="'red'">{{ this.errorMsg }}</div>
 </div>
