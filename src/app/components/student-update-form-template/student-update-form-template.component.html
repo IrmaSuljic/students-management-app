@@ -1,0 +1,51 @@
+<div class="container mt-2" *ngIf="student">
+  <form #updateForm="ngForm" (ngSubmit)="updateStudent(student.id)">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputFirstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputFirstName"
+          name="inputFirstName"
+          [(ngModel)]="student.firstName"
+          placeholder="First Name"
+          required
+          minlength="3"
+          maxlength="20"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputLastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputLastName"
+          name="inputLastName"
+          [(ngModel)]="student.lastName"
+          placeholder="Last Name"
+          required
+          minlength="3"
+          maxlength="20"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCurrentCourse">Current Course</label>
+        <select
+          id="inputCurrentCourse"
+          class="form-control"
+          name="inputCurrentCourse"
+          [(ngModel)]="student.currentCourse"
+        >
+          <option value="">Choose...</option>
+          <option [value]="item.title" *ngFor="let item of courses">
+            {{ item.title }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>

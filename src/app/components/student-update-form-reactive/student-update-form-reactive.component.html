@@ -1,0 +1,67 @@
+<div class="container mt-2" *ngIf="student">
+  <form [formGroup]="studentForm" (ngSubmit)="updateStudent(student.id)">
+    <div class="form-row">
+      <div
+        class="form-group col-md-6"
+        [ngClass]="{ 'has-error': firstName.invalid && firstName.dirty }"
+      >
+        <label for="inputFirstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputFirstName"
+          name="inputFirstName"
+          formControlName="firstName"
+          placeholder="First Name"
+        />
+        <small
+          [ngClass]="{ 'has-error': firstName.invalid && firstName.dirty }"
+          *ngIf="firstName.invalid && firstName.dirty"
+          >First name is required and must be between 3 and 20 characters</small
+        >
+      </div>
+      <div
+        class="form-group col-md-6"
+        [ngClass]="{ 'has-error': lastName.invalid && lastName.dirty }"
+      >
+        <label for="inputLastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputLastName"
+          name="inputLastName"
+          formControlName="lastName"
+          placeholder="Last Name"
+        />
+        <small
+          [ngClass]="{ 'has-error': lastName.invalid && lastName.dirty }"
+          *ngIf="lastName.invalid && lastName.dirty"
+          >Last name is required and must be between 3 and 20 characters</small
+        >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCurrentCourse">Current Course</label>
+        <select
+          id="inputCurrentCourse"
+          class="form-control"
+          name="inputCurrentCourse"
+          formControlName="currentCourse"
+        >
+          <option value="">Choose...</option>
+          <option [value]="item.title" *ngFor="let item of courses">
+            {{ item.title }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="studentForm.invalid"
+    >
+      Update
+    </button>
+  </form>
+</div>

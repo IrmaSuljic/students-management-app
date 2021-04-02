@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Student } from './../../models/student';
 import { StudentService } from './../../services/student.service';
+import { AddStudentFormComponent } from './../add-student-form/add-student-form.component';
 
 @Component({
   selector: 'app-students-view',
@@ -10,7 +12,11 @@ import { StudentService } from './../../services/student.service';
 })
 export class StudentsViewComponent implements OnInit {
   students: Student[] = [];
-  constructor(private route: Router, private studentService: StudentService) {}
+  constructor(
+    private route: Router,
+    private studentService: StudentService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.getStudents();
@@ -22,15 +28,19 @@ export class StudentsViewComponent implements OnInit {
     });
   }
 
+  openAddStudentModal() {
+    this.modalService.open(AddStudentFormComponent);
+  }
+
   addStudent(): void {
     const student = {
       id: 5,
       firstName: 'Niko',
       lastName: 'Nikic',
       courses: [
-        { title: 'HTML', completed: 8 },
-        { title: 'CSS', completed: 8 },
-        { title: 'Angular', completed: 4 },
+        { id: 1, title: 'HTML', completed: 8 },
+        { id: 2, title: 'CSS', completed: 8 },
+        { id: 4, title: 'Angular', completed: 4 },
       ],
       currentCourse: 'Angular',
       dateOfBirth:
@@ -42,12 +52,7 @@ export class StudentsViewComponent implements OnInit {
   }
 
   updateStudent(id: number): void {
-    let student = this.students.find((x) => x.id === id);
-    student.lastName = 'Doe';
-    this.studentService.update(student).subscribe((response) => {
-      this.students = this.students.filter((x) => x.id !== id);
-      this.students.push(response.body);
-    });
+    this.route.navigate(['/student-update-form-reactive', id]);
   }
 
   deleteStudent(id: number): void {

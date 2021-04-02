@@ -24,7 +24,7 @@
     {
       "id": 2,
       "firstName": "Mujo",
-      "lastName": "Doe",
+      "lastName": "Mujicic",
       "courses": [
         {
           "title": "HTML",
@@ -39,8 +39,11 @@
           "completed": 5
         }
       ],
-      "currentCourse": "JavaScript",
-      "dateOfBirth": "Mon Dec 19 1988 00:00:00 GMT+0100 (Central European Standard Time)"
+      "currentCourse": "CSS",
+      "dateOfBirth": "Mon Dec 19 1988 00:00:00 GMT+0100 (Central European Standard Time)",
+      "inputFirstName": "Mujo",
+      "inputLastName": "Suljic",
+      "inputCurrentCourse": "CSS"
     },
     {
       "id": 3,
