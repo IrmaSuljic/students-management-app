@@ -20,7 +20,7 @@
         <th scope="row">{{ student.id }}</th>
         <td>{{ student.firstName }}</td>
         <td>{{ student.lastName }}</td>
-        <td>{{ student.courses.length }}</td>
+        <td>{{ student.courses ? student.courses.length : 0 }}</td>
         <td>
           <button class="btn btn-primary" (click)="goToDetails(student.id)">
             Details

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Course } from './../../models/course';
 import { CourseService } from './../../services/course.service';
+import { StudentService } from './../../services/student.service';
 
 @Component({
   selector: 'app-add-student-form',
@@ -11,28 +12,50 @@ import { CourseService } from './../../services/course.service';
 })
 export class AddStudentFormComponent implements OnInit {
   courses: Course[] = [];
-  studentForm: FormGroup = new FormGroup({});
-  firstName: FormControl = new FormControl('');
-  lastName: FormControl = new FormControl('');
-  currentCourse: FormControl = new FormControl('');
-
+  studentForm: FormGroup;
+  firstName: FormControl;
+  lastName: FormControl;
+  coursesFormControl: FormArray;
+  currentCourse: FormControl;
+  dateOfBirth: FormControl;
   constructor(
     public activeModal: NgbActiveModal,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private studentService: StudentService
   ) {}
 
   ngOnInit(): void {
-    this.getCourses();
     this.initForm();
+    this.getCourses();
   }
 
   getCourses(): void {
     this.courseService.getAll().subscribe((response) => {
       this.courses = response.body;
+      this.courses.forEach((item) => {
+        item.completed = 0;
+        this.coursesFormControl.push(new FormControl(false));
+      });
     });
   }
 
-  addStudent() {}
+  addStudent() {
+    if (this.studentForm.invalid) {
+      return;
+    }
+    let student = this.studentForm.value;
+    student.dateOfBirth = new Date(
+      student.dateOfBirth.year,
+      student.dateOfBirth.month - 1,
+      student.dateOfBirth.day
+    );
+    student.courses = this.studentForm.value.courses
+      .map((checked, i) => (checked ? this.courses[i] : null))
+      .filter((v) => v !== null);
+    this.studentService.add(student).subscribe((response) => {
+      this.activeModal.close(response.body);
+    });
+  }
 
   initForm() {
     this.firstName = new FormControl('', [
@@ -45,11 +68,15 @@ export class AddStudentFormComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]);
+    this.coursesFormControl = new FormArray([]);
     this.currentCourse = new FormControl('');
+    this.dateOfBirth = new FormControl(null);
     this.studentForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
+      courses: this.coursesFormControl,
       currentCourse: this.currentCourse,
+      dateOfBirth: this.dateOfBirth,
     });
   }
 }

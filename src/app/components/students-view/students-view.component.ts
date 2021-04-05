@@ -29,26 +29,13 @@ export class StudentsViewComponent implements OnInit {
   }
 
   openAddStudentModal() {
-    this.modalService.open(AddStudentFormComponent);
-  }
-
-  addStudent(): void {
-    const student = {
-      id: 5,
-      firstName: 'Niko',
-      lastName: 'Nikic',
-      courses: [
-        { id: 1, title: 'HTML', completed: 8 },
-        { id: 2, title: 'CSS', completed: 8 },
-        { id: 4, title: 'Angular', completed: 4 },
-      ],
-      currentCourse: 'Angular',
-      dateOfBirth:
-        'Mon Dec 19 1988 00:00:00 GMT+0100 (Central European Standard Time)',
-    };
-    this.studentService.add(student).subscribe((response) => {
-      this.students.push(response.body);
-    });
+    this.modalService
+      .open(AddStudentFormComponent, { size: 'lg' })
+      .result.then((result) => {
+        if (result) {
+          this.students.push(result);
+        }
+      });
   }
 
   updateStudent(id: number): void {
