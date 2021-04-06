@@ -49,7 +49,7 @@ export class AddStudentFormComponent implements OnInit {
       student.dateOfBirth.month - 1,
       student.dateOfBirth.day
     );
-    student.courses = this.studentForm.value.courses
+    student.courses = student.courses
       .map((checked, i) => (checked ? this.courses[i] : null))
       .filter((v) => v !== null);
     this.studentService.add(student).subscribe((response) => {

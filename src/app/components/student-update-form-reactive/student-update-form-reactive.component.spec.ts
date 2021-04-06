@@ -1,5 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { StudentUpdateFormReactiveComponent } from './student-update-form-reactive.component';
 
 describe('StudentUpdateFormReactiveComponent', () => {
@@ -8,9 +9,9 @@ describe('StudentUpdateFormReactiveComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StudentUpdateFormReactiveComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [StudentUpdateFormReactiveComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -69,6 +69,30 @@
       ],
       "currentCourse": "CSS",
       "dateOfBirth": "Mon Dec 19 1988 00:00:00 GMT+0100 (Central European Standard Time)"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Johny",
+      "courses": [
+        {
+          "id": 1,
+          "title": "HTML",
+          "completed": 0
+        },
+        {
+          "id": 2,
+          "title": "CSS",
+          "completed": 0
+        },
+        {
+          "id": 3,
+          "title": "JavaScript",
+          "completed": 0
+        }
+      ],
+      "currentCourse": "HTML",
+      "dateOfBirth": "2011-08-18T22:00:00.000Z",
+      "id": 4
     }
   ],
   "courses": [

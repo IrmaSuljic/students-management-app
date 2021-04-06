@@ -2,7 +2,11 @@ import { CompletedBorderDirective } from './completed-border.directive';
 
 describe('CompletedBorderDirective', () => {
   it('should create an instance', () => {
-    const directive = new CompletedBorderDirective();
+    let elRefMock = {
+      nativeElement: document.createElement('div'),
+    };
+
+    const directive = new CompletedBorderDirective(elRefMock);
     expect(directive).toBeTruthy();
   });
 });

@@ -13,6 +13,6 @@ export class PercentMsgPipe implements PipeTransform {
     } else if (0 < value && value < 1) {
       msg = ' In Progress';
     }
-    return args[0] + msg;
+    return args.length ? args[0] + msg : msg;
   }
 }

@@ -28,7 +28,7 @@ export class StudentsViewComponent implements OnInit {
     });
   }
 
-  openAddStudentModal() {
+  openAddStudentModal(): void {
     this.modalService
       .open(AddStudentFormComponent, { size: 'lg' })
       .result.then((result) => {
