@@ -6,20 +6,20 @@
       "lastName": "Doe",
       "courses": [
         {
-          "title": "HTML",
-          "completed": 8
+          "id": 1,
+          "title": "HTML"
         },
         {
-          "title": "CSS",
-          "completed": 4
+          "id": 2,
+          "title": "CSS"
         },
         {
-          "title": "Angular",
-          "completed": 0
+          "id": 4,
+          "title": "Angular"
         }
       ],
       "currentCourse": "HTML",
-      "dateOfBirth": "Mon Dec 19 1988 00:00:00 GMT+0100 (Central European Standard Time)"
+      "dateOfBirth": "1988-12-18T23:00:00.000Z"
     },
     {
       "id": 2,

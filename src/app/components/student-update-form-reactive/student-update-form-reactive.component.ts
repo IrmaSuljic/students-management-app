@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from './../../models/course';
 import { Student } from './../../models/student';
@@ -16,10 +16,12 @@ export class StudentUpdateFormReactiveComponent implements OnInit {
   id: number;
   student: Student;
   courses: Course[] = [];
-  studentForm: FormGroup = new FormGroup({});
-  firstName: FormControl = new FormControl('');
-  lastName: FormControl = new FormControl('');
-  currentCourse: FormControl = new FormControl('');
+  studentForm: FormGroup;
+  firstName: FormControl;
+  lastName: FormControl;
+  coursesFormControl: FormArray = new FormArray([]);
+  currentCourse: FormControl;
+  dateOfBirth: FormControl;
   constructor(
     private route: ActivatedRoute,
     private studentService: StudentService,
@@ -57,11 +59,24 @@ export class StudentUpdateFormReactiveComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]);
+    this.courses.forEach((item) => {
+      this.coursesFormControl.push(
+        new FormControl(student.courses.find((x) => x.title === item.title))
+      );
+    });
     this.currentCourse = new FormControl(student.currentCourse);
+    const dateOfBirth = new Date(student.dateOfBirth);
+    this.dateOfBirth = new FormControl({
+      year: dateOfBirth ? dateOfBirth.getFullYear() : null,
+      month: dateOfBirth ? dateOfBirth.getMonth() + 1 : null,
+      day: dateOfBirth ? dateOfBirth.getDate() : null,
+    });
     this.studentForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
+      courses: this.coursesFormControl,
       currentCourse: this.currentCourse,
+      dateOfBirth: this.dateOfBirth,
     });
   }
 
@@ -72,6 +87,14 @@ export class StudentUpdateFormReactiveComponent implements OnInit {
       return;
     }
     const updatedValues = this.studentForm.value;
+    updatedValues.dateOfBirth = new Date(
+      updatedValues.dateOfBirth.year,
+      updatedValues.dateOfBirth.month - 1,
+      updatedValues.dateOfBirth.day
+    );
+    updatedValues.courses = updatedValues.courses
+      .map((checked, i) => (checked ? this.courses[i] : null))
+      .filter((v) => v !== null);
     this.studentService
       .update({ ...this.student, ...updatedValues })
       .subscribe((response) => {

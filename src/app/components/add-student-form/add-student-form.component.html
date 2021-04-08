@@ -93,6 +93,8 @@
                 name="dp"
                 formControlName="dateOfBirth"
                 ngbDatepicker
+                [minDate]="{ year: 1950, month: 1, day: 1 }"
+                [maxDate]="{ year: 2010, month: 12, day: 31 }"
                 #d="ngbDatepicker"
               />
               <div class="input-group-append">
