@@ -16,6 +16,7 @@ import { StudentsViewComponent } from './components/students-view/students-view.
 import { CompletedBorderDirective } from './directives/completed-border.directive';
 import { PercentMsgPipe } from './pipes/percent-msg.pipe';
 import { AddStudentFormComponent } from './components/add-student-form/add-student-form.component';
+import { PageTitleComponent } from './components/page-title/page-title.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AddStudentFormComponent } from './components/add-student-form/add-stude
     StudentUpdateFormTemplateComponent,
     StudentUpdateFormReactiveComponent,
     AddStudentFormComponent,
+    PageTitleComponent,
   ],
   imports: [
     BrowserModule,

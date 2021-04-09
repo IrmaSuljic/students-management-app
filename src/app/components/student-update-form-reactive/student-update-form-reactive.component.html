@@ -1,6 +1,4 @@
-<div class="mx-auto text-center mb-3 p-2 bg-primary text-light">
-  <h3>Students Update - Reactive Form</h3>
-</div>
+<app-page-title [title]="'Students Update - Reactive Form'"></app-page-title>
 <div class="container mt-2" *ngIf="student">
   <form [formGroup]="studentForm" (ngSubmit)="updateStudent(student.id)">
     <div class="form-row">
